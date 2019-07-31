@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def top
-
+    @records =Record.all
   end
 
   def new

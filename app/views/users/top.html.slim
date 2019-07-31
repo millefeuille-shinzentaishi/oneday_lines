@@ -8,6 +8,7 @@ h1 1day_100lines
   li = link_to "login", login_path
 
 
-
-
+- @records.each do |r|
+  = r.user.name
+  = r.t_line
 

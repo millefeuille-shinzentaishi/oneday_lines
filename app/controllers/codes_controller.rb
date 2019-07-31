@@ -9,6 +9,14 @@ class CodesController < ApplicationController
     @code.line = @code.content.lines.count
     @code.folder_id = params[:folder_id]
     if @code.save
+      records =Record.where(user_id: current_user.id, created_at: Date.today.in_time_zone.all_day)
+      if records.empty?
+        record = Record.new(user_id: current_user.id, t_line: 0)
+      else
+        record = records.first
+      end
+      record.t_line += @code.line
+      record.save
       redirect_to folder_path(@code.folder_id)
     else
       render new
@@ -16,6 +24,10 @@ class CodesController < ApplicationController
   end
 
   def show
+    @code = Code.find(params[:id])
+  end
+
+  def edit
     @code = Code.find(params[:id])
   end
 
