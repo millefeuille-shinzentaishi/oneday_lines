@@ -5,10 +5,11 @@ class FoldersController < ApplicationController
 
   def create
     @folder = Folder.new(folder_params)
+    @folder.user_id = current_user.id
     if @folder.save
-      redirect_to @folder
+      redirect_to current_user
     else
-      render new
+      render :new
     end
   end
 
@@ -16,6 +17,8 @@ class FoldersController < ApplicationController
     @folder = Folder.find(params[:id])
     @codes = Code.where(folder_id: @folder.id)
   end
+
+
 
 
 

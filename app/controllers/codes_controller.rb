@@ -9,10 +9,14 @@ class CodesController < ApplicationController
     @code.line = @code.content.lines.count
     @code.folder_id = params[:folder_id]
     if @code.save
-      redirect_to root_path
+      redirect_to folder_path(@code.folder_id)
     else
       render new
     end
+  end
+
+  def show
+    @code = Code.find(params[:id])
   end
 
 

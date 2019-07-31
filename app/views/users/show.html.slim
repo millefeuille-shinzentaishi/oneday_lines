@@ -1,0 +1,16 @@
+h1 = @user.name
+
+= link_to "新規フォルダ", new_folder_path
+
+table
+  thead
+    tr
+      th フォルダ名
+
+  tbody
+    - @folders.each do |folder|
+      tr
+        td = link_to folder.name, folder
+
+
+
