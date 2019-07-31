@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'records/new'
   root 'users#top'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
