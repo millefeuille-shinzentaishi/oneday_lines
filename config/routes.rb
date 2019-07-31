@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'codes/new'
   get 'folders/new'
   get 'spans/new'
   get 'users/new'
