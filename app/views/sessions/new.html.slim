@@ -1,0 +1,8 @@
+h1 ログイン
+
+= form_with url: login_path do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.label :password
+  = f.password_field :password
+  = f.submit
