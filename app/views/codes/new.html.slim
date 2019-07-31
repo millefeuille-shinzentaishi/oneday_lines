@@ -1,0 +1,8 @@
+h1 new Code
+
+= form_with model: @code, url: folder_codes_path(folder_id: params[:folder_id]) do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.label :content
+  = f.text_area :content, style: "width:600px; height:1000px"
+  = f.submit

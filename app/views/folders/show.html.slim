@@ -1,0 +1,13 @@
+h1 = @folder.name
+
+table
+  thead
+    tr
+      th コード名
+      th 行数
+
+  tbody
+    - @codes.each do |code|
+      tr
+        td = link_to code.name, code
+        td = code.line
