@@ -1,0 +1,19 @@
+h1 = @folder.name
+
+= link_to "戻る", user_path(@folder.user_id)
+ul.nav.justify-content-end
+  - if current_user.id == @folder.user_id
+    li.nav-item
+      = link_to "新規コード", new_folder_code_path(params[:id]), class: "btn btn-success nav-link"
+
+table.table.table-hover
+  thead
+    tr
+      th コード名
+      th 行数
+
+  tbody
+    - @codes.each do |code|
+     tr
+      td = link_to code.name, code
+      td = code.line

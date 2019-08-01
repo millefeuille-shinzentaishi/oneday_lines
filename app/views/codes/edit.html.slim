@@ -1,0 +1,8 @@
+h1 コード編集
+
+= form_with model: @code, url: code_path(params[:id]) do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.label :content
+  = f.text_area :content, style: "width:600px; height:1000px"
+  = f.submit

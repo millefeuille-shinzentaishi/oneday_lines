@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title
+      | OnedayLines
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    = render 'layouts/header'
+    - flash.each do |name, msg|
+      div class=("alert alert-#{name}")
+        = msg.html_safe
+    .container
+      = yield
+

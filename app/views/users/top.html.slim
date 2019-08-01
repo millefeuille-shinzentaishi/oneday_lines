@@ -1,0 +1,19 @@
+h1 1day_100lines
+
+
+
+
+table.table.table-hover
+  thead
+    tr
+      th ユーザー
+      th 行数
+      th 日付
+
+  tbody
+    - @records.reverse.each do |r|
+      tr
+        td = link_to r.user.name, user_path(r.user_id)
+        td = r.t_line
+        td = r.created_at.strftime('%Y/%m/%d')
+

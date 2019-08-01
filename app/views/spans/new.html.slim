@@ -1,0 +1,8 @@
+h1 期間設定
+
+= form_with model: @span do |f|
+  = f.label :start_date
+  = f.date_field :start_date
+  = f.label :end_date
+  = f.date_field :end_date
+  = f.submit

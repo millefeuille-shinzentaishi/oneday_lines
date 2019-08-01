@@ -1,0 +1,22 @@
+nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.mt-3.mb-3
+  button.navbar-toggler aria-controls="navbarNav4" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNav4" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  .container
+    = link_to '1day 100lines', root_path, class: 'navbar-brand', title: "topへ", rel: "tooltip"
+    .collapse.navbar-collapse.justify-content-end
+      ul.navbar-nav
+        - if logged_in?
+          -if current_user.admin == true
+            li.nav-item
+              = link_to "管理者ツール", admin_path, class: "nav-link"
+          li.nav-item
+            = link_to "ユーザー一覧", users_path, class: "nav-link"
+          li.nav-item
+            = link_to current_user.name, user_path(id: current_user), class: "nav-link"
+            li.nav-item
+              a.nav-link data-method="delete" href="/logout"
+                i.fas.fa-sign-out-alt logout
+        - else
+          li.nav-item
+            a.nav-link href="/login"
+              i.fas.fa-sign-in-alt login
