@@ -31,6 +31,25 @@ class CodesController < ApplicationController
     @code = Code.find(params[:id])
   end
 
+  def update
+    code = Code.find(params[:id])
+    old_line = code.line
+    if code.update(code_params)
+      code.line = code.content.lines.count
+      code.save
+      records =Record.where(user_id: current_user.id, created_at: Date.today.in_time_zone.all_day)
+      if records.empty?
+        record = Record.new(user_id: current_user.id, t_line: 0)
+      else
+        record = records.first
+      end
+      record.t_line += (code.line - old_line)
+      record.save
+      redirect_to code_path(code)
+    else
+      render :edit
+    end
+  end
 
 
 

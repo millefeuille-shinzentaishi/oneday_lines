@@ -1,6 +1,6 @@
 h1 コード編集
 
-= form_with model: @code, url: folder_codes_path(folder_id: params[:folder_id]) do |f|
+= form_with model: @code, url: code_path(params[:id]) do |f|
   = f.label :name
   = f.text_field :name
   = f.label :content
