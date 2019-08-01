@@ -1,14 +1,19 @@
 h1 1day_100lines
 
-- if logged_in?
-  li = link_to current_user.name, user_path(current_user.id)
-  li = link_to "logout", logout_path, method: :delete
-- else
-  li = link_to "新規", new_user_path
-  li = link_to "login", login_path
 
 
-- @records.each do |r|
-  = r.user.name
-  = r.t_line
+
+table.table.table-hover
+  thead
+    tr
+      th ユーザー
+      th 行数
+      th 日付
+
+  tbody
+    - @records.reverse.each do |r|
+      tr
+        td = link_to r.user.name, user_path(r.user_id)
+        td = r.t_line
+        td = r.created_at.strftime('%Y/%m/%d')
 

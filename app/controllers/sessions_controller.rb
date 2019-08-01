@@ -6,7 +6,11 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to user
+      if user.admin = true
+        redirect_to "/admin"
+      else
+        redirect_to user
+      end
     else
       redirect_to login_path
     end

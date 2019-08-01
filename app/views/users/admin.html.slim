@@ -1,0 +1,16 @@
+h1 管理者ツール
+
+= link_to "新規ユーザー作成", new_user_path, class: "btn btn-success"
+br
+br
+- if Span.all.empty?
+  = link_to "期間設定", new_span_path, class: "btn btn-info"
+  br
+  br
+- else
+  = link_to "期間リセット", span_path(1), method: :delete, class: "btn btn-danger"
+  br
+  br
+
+
+

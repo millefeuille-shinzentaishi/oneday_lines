@@ -1,6 +1,7 @@
 class Folder < ApplicationRecord
-  has_many :codes
   belongs_to :user
+  has_many :codes, dependent: :destroy
+
 
   validates :name, presence: true
 end

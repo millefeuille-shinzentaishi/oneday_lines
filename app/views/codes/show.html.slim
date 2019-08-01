@@ -1,6 +1,10 @@
 h1 = @code.name
+
 = link_to "戻る", folder_path(@code.folder_id)
-= link_to "コード編集", edit_code_path(@code.id)
+ul.nav.justify-content-end
+  - if current_user.id == @code.folder.user_id
+    li.nav-item
+      = link_to "コード編集", edit_code_path(@code.id), class: "btn btn-success nav-link"
 
 pre
   |

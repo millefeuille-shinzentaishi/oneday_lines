@@ -1,8 +1,12 @@
 h1 = @user.name
 
-= link_to "新規フォルダ", new_folder_path
 
-table
+ul.nav.justify-content-end
+  - if current_user.id == @user.id
+    li.nav-item
+      = link_to( "新規フォルダ", new_folder_path, class: "btn btn-success nav-link")
+
+table.table.table-hover
   thead
     tr
       th フォルダ名

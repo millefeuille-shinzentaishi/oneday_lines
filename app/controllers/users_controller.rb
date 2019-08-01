@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def top
-    @records =Record.all
+    @records =Record.all.order(:create_at)
+  end
+
+  def index
+    @users = User.where(admin: false)
   end
 
   def new
@@ -9,8 +13,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.password = "pass"
     if @user.save
-      log_in @user
       redirect_to user_path(@user.id)
     else
       render :new
@@ -22,10 +26,20 @@ class UsersController < ApplicationController
     @folders = @user.folders
   end
 
+  def admin
+
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to users_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:name)
   end
 
 end
