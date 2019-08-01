@@ -16,4 +16,13 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+
+  def authenticate_user
+
+    if current_user == nil
+
+      redirect_to root_path, danger: "ログインしろ"
+
+    end
+  end
 end

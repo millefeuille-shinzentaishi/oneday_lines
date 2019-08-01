@@ -1,4 +1,6 @@
 class CodesController < ApplicationController
+  before_action :authenticate_user
+  before_action :correct_user, only: %i[edit update]
 
   def new
     @code = Code.new
@@ -59,5 +61,12 @@ class CodesController < ApplicationController
 
   def code_params
     params.require(:code).permit(:name, :content)
+  end
+
+  def correct_user
+    code = Code.find(params[:id])
+    return if code.folder.user == current_user
+
+    redirect_to root_path, danger: "アカウントが違います"
   end
 end

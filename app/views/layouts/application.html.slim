@@ -12,7 +12,7 @@ html
   body
     = render 'layouts/header'
     - flash.each do |name, msg|
-      .alert.alert-= name
+      div class=("alert alert-#{name}")
         = msg.html_safe
     .container
       = yield

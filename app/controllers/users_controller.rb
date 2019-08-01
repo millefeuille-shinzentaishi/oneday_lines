@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: %i[show index]
+  /before_action :correct_user, only: %i[edit update]/
+
   def top
     @records =Record.all.order(:create_at)
   end
 
   def index
-    @users = User.where(admin: false)
+    @users = User.all
   end
 
   def new
@@ -42,4 +45,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name)
   end
 
+  def correct_user
+    user = User.find(params[:id])
+    return if user == current_user
+
+    redirect_to root_path, danger: "アカウントが違います"
+  end
 end

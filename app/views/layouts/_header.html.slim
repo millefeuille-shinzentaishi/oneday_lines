@@ -6,7 +6,7 @@ nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.mt-3.mb-3
     .collapse.navbar-collapse.justify-content-end
       ul.navbar-nav
         - if logged_in?
-          -if current_user.admin = true
+          -if current_user.admin == true
             li.nav-item
               = link_to "管理者ツール", admin_path, class: "nav-link"
           li.nav-item

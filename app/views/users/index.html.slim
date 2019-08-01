@@ -8,8 +8,8 @@ table.table
       tr
         td
           = link_to(user.name,  user_path(id: user.id))
-        - if current_user.admin
-          td
+        td
+          - if current_user.admin && user.admin == false
             = link_to("削除", user, method: :delete, data: \
               { confirm: "削除しますか？",
               cansel: "やめる",
