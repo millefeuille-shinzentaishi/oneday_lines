@@ -1,7 +1,7 @@
 h1 1day_100lines
 
 - if logged_in?
-
+  li = link_to current_user.name, user_path(current_user.id)
   li = link_to "logout", logout_path, method: :delete
 - else
   li = link_to "新規", new_user_path

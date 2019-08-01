@@ -19,7 +19,7 @@ class CodesController < ApplicationController
       record.save
       redirect_to folder_path(@code.folder_id)
     else
-      render new
+      render :new
     end
   end
 

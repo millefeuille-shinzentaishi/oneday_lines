@@ -1,6 +1,7 @@
 h1 新規フォルダ
 
-= form_with model: @folder do |f|
+= form_with model: @folder, local: true do |f|
+  = inform_validation_error @folder
   = f.label :name
   = f.text_field :name
   = f.submit

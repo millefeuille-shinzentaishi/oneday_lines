@@ -1,5 +1,6 @@
 h1 = @folder.name
 
+= link_to "戻る", user_path(@folder.user_id)
 = link_to "新規コード", new_folder_code_path(params[:id])
 
 table
