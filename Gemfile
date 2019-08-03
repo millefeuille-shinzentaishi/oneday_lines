@@ -32,6 +32,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '>= 4.3.1'
 
 gem 'font-awesome-sass', '5.3.1'
+
+#graph
+gem 'lazy_high_charts'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

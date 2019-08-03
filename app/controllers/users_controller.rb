@@ -34,9 +34,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    span = Span.first
+    span.destroy
     user = User.find(params[:id])
     user.destroy
     redirect_to users_path
+  end
+
+  def all_destroy
+    users = User.all
+    users.each do |user|
+      unless user.admin
+        user.destroy
+      end
+    end
+    redirect_to admin_path, success: "初期化完了！"
   end
 
   private
