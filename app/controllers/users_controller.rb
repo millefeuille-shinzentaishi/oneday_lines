@@ -4,6 +4,31 @@ class UsersController < ApplicationController
 
   def top
     @records =Record.all.order(:create_at)
+    unless Span.all.empty?
+      s_day = Span.first.start_date
+      e_day = Span.first.end_date
+      @span = []
+      (s_day..e_day).each do |date|
+        @span.push(date)
+      end
+
+      @users_line = []
+      User.all.each do |user|
+        user_line = []
+        Record.where(user_id: user.id).each do |r|
+          user_line.push(r.t_line)
+        end
+        @users_line.push(user_line)
+      end
+      @chart = LazyHighCharts::HighChart.new("graph") do |c|
+        c.xAxis(categories: @span)
+        c.yAxis(title: {text: "行数"})
+        User.all.each_with_index() do |user, i|
+        c.series(name: user.name, data: @users_line[i])
+        end
+      end
+    end
+
   end
 
   def index
