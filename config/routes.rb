@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   get 'admin' => 'users#admin'
+  delete 'all_destroy' => 'users#all_destroy'
   resources :users
   resources :folders, shallow: true do
     resources :codes

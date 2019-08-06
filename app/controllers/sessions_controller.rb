@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
       if user.admin == true
         redirect_to "/admin"
       else
-        redirect_to user
+        redirect_to user, success: "ログイン成功！"
       end
     else
-      redirect_to login_path
+      redirect_to login_path, danger: "ID／パスワードが違います"
     end
   end
 
