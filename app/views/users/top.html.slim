@@ -2,5 +2,11 @@ h1 1day_100lines
 
 - if logged_in?
   = link_to "コードを記録", user_path(id: current_user.id), class: "btn btn-primary"
+- unless @chart.nil?
+  = high_chart "my_chart", @chart
 
-= high_chart "my_chart", @chart
+
+
+
+
+

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   /before_action :correct_user, only: %i[edit update]/
 
   def top
-    @records =Record.all.order(:create_at)
+
     unless Span.all.empty?
       s_day = Span.first.start_date
       e_day = Span.first.end_date
@@ -11,11 +11,30 @@ class UsersController < ApplicationController
       (s_day..e_day).each do |date|
         @span.push(date)
       end
+      # if Record.where(user_id: current_user.id, day: s_day).empty?
+      #     start_record = Record.new(user_id: current_user.id, day: s_day, t_line: 0)
+      #     start_record.save
+      # end
+
+      User.all.each do |user|
+        if Record.where(user_id: user.id, day: s_day).empty?
+          a = Record.new(user_id: user.id, day: s_day, t_line: 0)
+          a.save
+        end
+        (s_day..Date.today).each do |d|
+          if Record.where(user_id: user.id, day: d).empty?
+              a = Record.new(user_id: user.id, day: d, t_line: Record.find_by(user_id: user.id, day: d.yesterday).t_line)
+              a.save
+            end
+          end
+        end
+
+
 
       @users_line = []
       User.all.each do |user|
         user_line = []
-        Record.where(user_id: user.id).each do |r|
+        Record.where(user_id: user.id, day: s_day..e_day).order(day: "asc").each do |r|
           user_line.push(r.t_line)
         end
         @users_line.push(user_line)

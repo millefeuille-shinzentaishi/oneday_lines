@@ -2,7 +2,7 @@ h1 コード編集
 
 = form_with model: @code, url: code_path(params[:id]) do |f|
   = f.label :name
-  = f.text_field :name
+  = f.text_field :name, class: "form-control"
   = f.label :content
-  = f.text_area :content, style: "width:600px; height:1000px"
-  = f.submit
+  = f.text_area :content, style: "width:600px; height:100px", class: "form-control"
+  = f.submit class: "btn btn-primary"
